@@ -259,3 +259,17 @@ double ConsoleInterface::getValidAmount(const std::string& prompt) {
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     return amount;
 }
+
+std::string ConsoleInterface::getValidString(const std::string& prompt) {
+    std::string input;
+    std::cout << prompt;
+
+    while(true) {
+        std::getline(std::cin, input);
+        if(!input.empty()) {
+            break;
+        }
+        std::cout << "Please enter a non-empty string: ";
+    }
+    return input;
+}
