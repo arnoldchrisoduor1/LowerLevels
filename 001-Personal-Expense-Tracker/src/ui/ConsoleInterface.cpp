@@ -273,3 +273,25 @@ std::string ConsoleInterface::getValidString(const std::string& prompt) {
     }
     return input;
 }
+
+int ConsoleInterface::getValidInteger(const std::string& prompt) {
+    int value;
+    std::cout << prompt;
+
+    while(!(std::cin >> value)) {
+        std::cout << "Please enter and valid integer: ";
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    return value;
+}
+
+void ConsoleInterface::clearScreen() {
+    // cross platform screen sharing.
+    #ifdef _WIN32
+        system("cls");
+    #else
+        system("clear");
+    #endif
+}
