@@ -232,5 +232,15 @@ void ConsoleInterface::handleViewAnalysis() {
 }
 
 double ConsoleInterface::getValidAmount(const std::string& prompt) {
+    double amount;
+    std::cout << (prompt.empty() ? "Enter amount: $" : prompt);
 
+    while(!(std::cin >> amount) || amount < 0) {
+        std::cout << "Please enter a vald positive amount: $";
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
+
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    return amount;
 }
