@@ -58,7 +58,7 @@ void ConsoleInterface::showMenu() {
 void ConsoleInterface::handleAddTransaction() {
     std::cout << "\n--- Add new Transaction ----" << std::endl;
 
-    double amount = getValidAmount();
+    double amount = getValidAmount("Enter amount: ");
     std::string category = getValidString("Enter category: ");
     std::string description = getValidString("Enter description: ");
 
@@ -101,7 +101,7 @@ void ConsoleInterface::handleUpdateTransaction() {
 
     std::cout << 'Current transaction: ' << existing->toString() << std::endl;
 
-    double amount = getValidAmount();
+    double amount = getValidAmount("Enter amount: ");
     std::string category = getValidString("Enter new category: ");
     std::string description = getValidString("Enter new description: ");
 
@@ -206,4 +206,31 @@ void ConsoleInterface::handleSearchTransactions() {
             std::cout << transaction.toString() << std::endl;
         }
     }
+}
+
+void ConsoleInterface::handleViewAnalysis() {
+    std::cout << "\n--- Expense Analysis ---" << std::endl;
+
+    if (tracker->getTransactionCount() == 0) {
+        std::cout << "No transactions to analyze." << std::endl;
+        return;
+    }
+
+    std::cout << "Total Expenses: $" << std::fixed << std::setprecision(2) << tracker->getTotalExpenses() << std::endl;
+    std::cout << "Total Transactions: " << tracker->getTransactionCount() << std::endl;
+    std::cout << "Average Transaction: $" << std::fixed << std::setprecision(2) << (tracker->getTotalExpenses() / tracker->getTransactionCount()) << std::endl;
+
+    std::cout << "\n--- Category Breakdown ---" << std::endl;
+    const auto& categoryTotals = tracker->getCategoryTotals();
+
+    for (const auto& pair : categoryTotals) {
+        double percentage = (pair.second / tracker->getTotalExpenses()) * 100;
+        std::cout << pair.first << ": $" << std::fixed << std::setprecision(2) 
+                  << pair.second << " (" << std::fixed << std::setprecision(1) 
+                  << percentage << "%)" << std::endl;
+    }
+}
+
+double ConsoleInterface::getValidAmount(const std::string& prompt) {
+
 }
