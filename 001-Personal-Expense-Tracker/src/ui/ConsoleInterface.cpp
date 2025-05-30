@@ -55,3 +55,16 @@ void ConsoleInterface::showMenu() {
     std::cout << "======================" <<std::endl;
 }
 
+void ConsoleInterface::handleAddTransaction() {
+    std::cout << "\n--- Add new Transaction ----" << std::endl;
+
+    double amount = getValidAmount();
+    std::string category = getValidString("Enter category: ");
+    std::string description = getValidString("Enter description: ");
+
+    Transaction transaction(amount, category, description);
+    tracker->addTransaction(transaction);
+
+    std::cout << "Transaction added successfully!" << std::endl;
+    std::cout << "Added: " << transaction.toString() << std::endl;
+}
