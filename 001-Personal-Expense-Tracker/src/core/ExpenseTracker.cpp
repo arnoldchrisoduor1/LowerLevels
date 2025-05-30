@@ -70,7 +70,7 @@ std::vector<Transaction> ExpenseTracker::findTransactionsByCategory(const std::s
     return result;
 }
 
-std::vector<Transaction> ExpenseTracker::findTransactionByAmountRange(double min, double max) const {
+std::vector<Transaction> ExpenseTracker::findTransactionsByAmountRange(double min, double max) const {
     std::vector<Transaction> result;
     for (const auto& transaction : transactions) {
         double amount = transaction.getAmount();
