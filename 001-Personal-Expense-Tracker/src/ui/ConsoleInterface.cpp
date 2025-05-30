@@ -108,3 +108,13 @@ void ConsoleInterface::handleUpdateTransaction() {
     tracker->updateTransaction(id, amount, category, description);
     std::cout << "Transaction updates sucessfully!" << std::endl;
 }
+
+void ConsoleInterface::handleViewTransactions() {
+    std::cout << "\n--- All Transactions ---" << std::endl;
+
+    const auto& transactions = tracker->getTransactions();
+    if (transactions.empty()) {
+        std::cout << "No transactions found." << std::endl;
+        return;
+    }
+}
