@@ -68,3 +68,17 @@ void ConsoleInterface::handleAddTransaction() {
     std::cout << "Transaction added successfully!" << std::endl;
     std::cout << "Added: " << transaction.toString() << std::endl;
 }
+
+void ConsoleInterface::handleRemoveTransaction() {
+    if (tracker->getTransactionCount() == 0) {
+        std::cout << "No transactions to remove." << std::endl;
+        return;
+    }
+
+    std::cout << "\n--- Remove Transaction ---" << std::endl;
+    handleViewTransactions();
+
+    int id = getValidInteger("Enter transaction ID to remove: ");
+    tracker->removeTransaction(id);
+    std::cout << "Transaction removed succesfully!" <<std::endl;
+}
