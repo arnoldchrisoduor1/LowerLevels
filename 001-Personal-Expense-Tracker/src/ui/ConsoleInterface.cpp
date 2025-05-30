@@ -131,4 +131,79 @@ void ConsoleInterface::handleSortTransactions() {
         std::cout << "No transactions to sort." << std::endl;
         return;
     }
+
+    std::cout << "\n--- Sort Transactions ---" << std::endl;
+    std::cout << "1. Sort by Date" << std::endl;
+    std::cout << "2. Sort by Amount" << std::endl;
+    std::cout << "3. Sort by Category" << std::endl;
+
+    int sortChoice = getValidInteger("Choose sorting criteria: ");
+
+    std::cout << "1. Ascending" << std::endl;
+    std::cout << "2. Descending" << std::endl;
+    int orderChoice = getValidInteger("Choose order: ");
+
+    std::cout << "1. Quick Sort" << std::endl;
+    std::cout << "2. Merge Sort" << std::endl;
+    int algorithmChoice = getValidInteger("Choose algorithm: ");
+
+    ExpenseTracker::SortBy criteria;
+    switch (sortChoice) {
+        case 1: criteria = ExpenseTracker::SortBy::DATE; break;
+        case 2: criteria = ExpenseTracker::SortBy::AMOUNT; break;
+        case 3: criteria = ExpenseTracker::SortBy::CATEGORY; break;
+        default:
+            std::cout << "Invalid choice." << std::endl;
+            return;
+    }
+
+    bool ascending = (orderChoice == 1);
+    ExpenseTracker::SortAlgorithm algorithm = (algorithmChoice == 1) ? ExpenseTracker::SortAlgorithm::QUICK_SORT : ExpenseTracker::SortAlgorithm::MERGE_SORT;
+
+    tracker->sortTransactions(criteria, ascending, algorithm);
+    std::cout << "Transactions sorted successfully!" << std::endl;
+
+    handleViewTransactions();
+}
+
+void ConsoleInterface::handleSearchTransactions() {
+    if (tracker->getTransactionCount() == 0) {
+        std::cout << "No transactions to search." << std::endl;
+        return;
+    }
+
+    std::cout << "\n--- Search Transactions ---" << std::endl;
+    std::cout << "1. Search by Category" << std::endl;
+    std::cout << "2. Search by Amount Range" << std::endl;
+    
+    int searchChoice = getValidInteger("Choose search type: ");
+
+    std::vector<Transaction> results;
+
+    switch (searchChoice) {
+        case 1: {
+            std::string category = getValidString("Enter category to search: ");
+            results = tracker->findTransactionsByCategory(category);
+            break;
+        }
+        case 2: {
+            double minAmount = getValidAmount("Enter minimum amount: ");
+            double maxAmount = getValidAmount("Enter maximum amount: ");
+            results = tracker->findTransactionsByAmountRange(minAmount, maxAmount);
+            break;
+        }
+        default:
+            std::cout << "Invalid choice." << std::endl;
+            return;
+    }
+
+    std::cout << "\n--- Search Results ---" << std::endl;
+    if (results.empty()) {
+        std::cout << "No transactions found matching your criteria." << std::endl;
+    } else {
+        std::cout << "Found " << results.size() << " transaction(s):" << std::endl;
+        for (const auto& transaction : results) {
+            std::cout << transaction.toString() << std::endl;
+        }
+    }
 }
