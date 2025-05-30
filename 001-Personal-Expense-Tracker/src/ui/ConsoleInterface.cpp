@@ -39,3 +39,19 @@ void ConsoleInterface::run() {
         }
     } while (choice != 0);
 }
+
+void ConsoleInterface::showMenu() {
+    clearScreen();
+    std::cout << "\n=== EXPENSE TRACKER MENU ===" << std::endl;
+    std::cout << "1. Add Transaction" << std::endl;
+    std::cout << "2. Remove Transaction" << std::endl;
+    std::cout << "3. Update Transaction" << std::endl;
+    std::cout << "4. View All Transactions" << std::endl;
+    std::cout << "5. Sort Transaction" << std::endl;
+    std::cout << "6. Search Transactions" << std::endl;
+    std::cout << "7. View Analysis" << std::endl;
+    std::cout << "8. Clear All Data" << std::endl;
+    std::cout << "0. Exit" << std::endl;
+    std::cout << "======================" <<std::endl;
+}
+
