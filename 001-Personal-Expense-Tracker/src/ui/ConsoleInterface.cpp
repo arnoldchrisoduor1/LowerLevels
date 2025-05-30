@@ -231,6 +231,21 @@ void ConsoleInterface::handleViewAnalysis() {
     }
 }
 
+void ConsoleInterface::handleClearData() {
+    std::cout << "\n--- Clear All Data ---" << std::endl;
+    std::cout << "This will delete all transactions. Are you sure? (N/Y): ";
+
+    std::string confirmation;
+    std::getline(std::cin, confirmation);
+
+    if (confirmation == "y" || confirmation == "Y") {
+        tracker->clear();
+        std::cout << "All data cleared successfully!" << std::endl;
+    } else {
+        std::cout << "Operation cancelled." << std::endl;
+    }
+}
+
 double ConsoleInterface::getValidAmount(const std::string& prompt) {
     double amount;
     std::cout << (prompt.empty() ? "Enter amount: $" : prompt);
