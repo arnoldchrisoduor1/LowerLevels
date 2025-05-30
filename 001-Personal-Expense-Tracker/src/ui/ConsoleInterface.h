@@ -19,7 +19,7 @@ class ConsoleInterface {
         void handleClearData();
 
         // Utility methods.
-        double getValidAmount();
+        double getValidAmount(const std::string& prompt);
         std::string getValidString(const std::string& prompt);
         int getValidInteger(const std::string& prompt);
         void pressEnterToContinue();
