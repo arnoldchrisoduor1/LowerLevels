@@ -82,3 +82,29 @@ void ConsoleInterface::handleRemoveTransaction() {
     tracker->removeTransaction(id);
     std::cout << "Transaction removed succesfully!" <<std::endl;
 }
+
+void ConsoleInterface::handleUpdateTransaction() {
+    if (tracker->getTransactionCount() == 0) {
+        std::cout << "No transaction to update" << std::endl;
+        return;
+    }
+
+    std::cout << "\n--- Update Transaction ---" << std::endl;
+    handleViewTransactions();
+
+    int id = getValidInteger("Enter transaction ID to update:");
+
+    Transaction* existing = tracker->findTransactionById(id);
+    if (!existing) {
+        throw ExpenseTrackerException("Transaction not found");
+    }
+
+    std::cout << 'Current transaction: ' << existing->toString() << std::endl;
+
+    double amount = getValidAmount();
+    std::string category = getValidString("Enter new category: ");
+    std::string description = getValidString("Enter new description: ");
+
+    tracker->updateTransaction(id, amount, category, description);
+    std::cout << "Transaction updates sucessfully!" << std::endl;
+}
