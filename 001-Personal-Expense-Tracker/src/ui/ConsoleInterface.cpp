@@ -117,4 +117,11 @@ void ConsoleInterface::handleViewTransactions() {
         std::cout << "No transactions found." << std::endl;
         return;
     }
+
+    std::cout << "Total transactions: " << transactions.size() << std::endl;
+    std::cout << "Total amount: $" << std::fixed << std::setprecision(2) <<tracker->getTotalExpenses() << std::endl << std::endl;
+
+    for (const auto& transaction : transactions) {
+        std::cout << transaction.toString() << std::endl;
+    }
 }
