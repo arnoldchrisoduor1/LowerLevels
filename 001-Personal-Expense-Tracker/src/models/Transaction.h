@@ -22,7 +22,7 @@ class Transaction {
         Transaction(double amt, const std::string& cat, const std::string& desc, const std::chrono::system_clock::time_point& dt);
 
         // Getters.
-        int getInt() const { return id; }
+        int getId() const { return id; }
         double getAmount() const { return amount; }
         const std::string& getCategory() const { return category; }
         const std::string& getDescription() const { return description; }

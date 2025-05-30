@@ -30,7 +30,7 @@ class ExpenseTracker {
         // search methods.
         std::vector<Transaction> findTransactionsByCategory(const std::string& category) const;
         std::vector<Transaction> findTransactionByAmountRange(double min, double max) const;
-        Transaction* fndTransactionById(int id);
+        Transaction* findTransactionById(int id);
 
         // Analysis methods
         double getTotalExpenses() const;
