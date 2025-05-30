@@ -125,3 +125,10 @@ void ConsoleInterface::handleViewTransactions() {
         std::cout << transaction.toString() << std::endl;
     }
 }
+
+void ConsoleInterface::handleSortTransactions() {
+    if (tracker->getTransactionCount() == 0) {
+        std::cout << "No transactions to sort." << std::endl;
+        return;
+    }
+}
