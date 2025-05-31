@@ -7,6 +7,7 @@ void ExpenseTracker::addTransaction(const Transaction& transaction) {
     updateCategoryTotals();
 }
 
+// remove trsnsaction code implementation.
 void ExpenseTracker::removeTransaction(int id) {
     auto it = std::find_if(transactions.begin(), transactions.end(),[id](const Transaction& t) { return t.getId() == id; });
     
@@ -18,6 +19,7 @@ void ExpenseTracker::removeTransaction(int id) {
     }
 }
 
+// update transaction code implementation.
 void ExpenseTracker::updateTransaction(int id, double amount, const std::string& category, const std::string& description) {
     Transaction* transaction = findTransactionById(id);
     if (transaction) {
@@ -30,6 +32,7 @@ void ExpenseTracker::updateTransaction(int id, double amount, const std::string&
     }
 }
 
+// sort transactions code implementation.
 void ExpenseTracker::sortTransactions(SortBy criteria, bool ascending, SortAlgorithm algorithm) {
     std::function<bool(const Transaction&, const Transaction&)> compare;
     
@@ -60,6 +63,7 @@ void ExpenseTracker::sortTransactions(SortBy criteria, bool ascending, SortAlgor
     }
 }
 
+// find transaction by category code implementation.
 std::vector<Transaction> ExpenseTracker::findTransactionsByCategory(const std::string& category) const {
     std::vector<Transaction> result;
     for (const auto& transaction : transactions) {
