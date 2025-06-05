@@ -6,7 +6,7 @@
 #include <memory>
 #include <stdexcept>
 
-#include "Transaction.h"
+#include "../models/Transaction.h"
 
 class ExpenseTracker {
     private:

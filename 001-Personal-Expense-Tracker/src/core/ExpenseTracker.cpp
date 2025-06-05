@@ -1,6 +1,6 @@
 #include "ExpenseTracker.h"
 #include <algorithm>
-#include <SortingAlgorithms.h>
+#include "../algorithms/SortingAlgorithms.h"
 
 void ExpenseTracker::addTransaction(const Transaction& transaction) {
     transactions.push_back(transaction);
@@ -82,6 +82,7 @@ std::vector<Transaction> ExpenseTracker::findTransactionsByAmountRange(double mi
             result.push_back(transaction);
         }
     }
+    return result;
 }
 
 Transaction* ExpenseTracker::findTransactionById(int id) {
