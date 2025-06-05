@@ -1,4 +1,4 @@
-#include "ConsoleInterface.h"
+#include "./ui/ConsoleInterface.h"
 
 int main() {
     try {

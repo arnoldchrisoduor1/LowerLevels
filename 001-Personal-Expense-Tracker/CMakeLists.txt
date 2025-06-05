@@ -13,12 +13,18 @@ if(MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
 endif()
 
-# Create executable
-add_executable(ExpenseTracker
-    src/main.cpp
+# Include headers if needed (currently you seem to use src/*/*.h)
+include_directories(src)
+
+# Recursively get all .cpp files in src/
+file(GLOB_RECURSE SOURCE_FILES
+    "src/*.cpp"
 )
 
-# Set output directory
+# Create the executable
+add_executable(ExpenseTracker ${SOURCE_FILES})
+
+# Output binary to bin/
 set_target_properties(ExpenseTracker PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
 )

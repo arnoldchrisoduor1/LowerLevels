@@ -99,7 +99,7 @@ void ConsoleInterface::handleUpdateTransaction() {
         throw ExpenseTrackerException("Transaction not found");
     }
 
-    std::cout << 'Current transaction: ' << existing->toString() << std::endl;
+    std::cout << "Current transaction: " << existing->toString() << std::endl;
 
     double amount = getValidAmount("Enter amount: ");
     std::string category = getValidString("Enter new category: ");
@@ -285,6 +285,11 @@ int ConsoleInterface::getValidInteger(const std::string& prompt) {
     }
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     return value;
+}
+
+void ConsoleInterface::pressEnterToContinue() {
+    std::cout << "\nPress Enter to continue...";
+    std::cin.get();
 }
 
 void ConsoleInterface::clearScreen() {

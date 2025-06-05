@@ -2,7 +2,7 @@
 #define CONSOLE_INTERFACE_H
 
 #include <memory>
-#include <ExpenseTracker.h>
+#include "../core/ExpenseTracker.h"
 
 class ConsoleInterface {
     private:
