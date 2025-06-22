@@ -15,6 +15,7 @@ class ExpenseTracker {
 
         void updateCategoryTotals();
 
+        // functions for the user to use.
     public:
         // Transaction management.
         void addTransaction(const Transaction& transaction);
