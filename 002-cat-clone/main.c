@@ -10,34 +10,33 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <errno.h>
 
-int main(int argc, char *argv[]) {
+#define BUF_SIZE 8192
 
-    // read the filename from command
-    const char filename = argv[1];
+/*
+* copy_stream: copy from infile to stdout using buffer.
+* infile must be an open FILE*
+* returns 0 on success, non-zero on error.
+*
+*/
 
-    // opening the file.
-    FILE *fp = fopen(filename, "r");
-
-    // reading the file into a buffer.
-    char buffer[1024];
-    size_t bytes;
-
-    while ((bytes = fread(buffer, 1, sizeof(buffer), fp)) > 0) {
-        if (fwrite(buffer, 1, bytes, stdout) != bytes) {
-            // handle write error.
-            perror("Write error");
-            break;
+static int copy_stream(FILE *infile, const char *name_for_err) {
+    char buf[BUF_SIZE];
+    size_t nread, nwritten;
+    while((nread = fread(buf, 1, sizeof(buf), infile)) > 0) {
+        nwritten = fwrite(buf, 1, nread, stdout);
+        if(nwritten < nread) {
+            // a write error.
+            fprintf(stderr, "mycat: write error while writing output: %s\n", strerror(errno));
+            return 1;
         }
     }
-    if (ferror(fp)) {
-        perror("Read error");
+
+    if(ferror(infile)) {
+        fprintf(stderr, "mycat: error reading %s: %s\n", name_for_err, strerror(errno));
+        return 1;
     }
-
-    // Closing the file.
-    fclose(fp);
-
-    // printing errors to stderr
-    fprintf(stderr, "cat: cannot open %s\n", filename);
-
+    return 0;
 }
