@@ -1,0 +1,31 @@
+What cat Actually Does
+
+The real Unix cat command can:
+
+Read one or many files.
+
+Print their contents to stdout (your terminal).
+
+If no file is passed, read from stdin (keyboard input).
+
+Handle errors (e.g., file not found).
+
+Work with both text and binary files.
+
+Concatenate files by printing them sequentially.
+
+For your first version, we’ll implement:
+
+Minimal Features
+
+Accept a filename as a command-line argument.
+
+Open the file.
+
+Read bytes from the file.
+
+Print them to stdout.
+
+Handle basic errors.
+
+That’s it.
