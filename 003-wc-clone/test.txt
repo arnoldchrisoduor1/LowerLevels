@@ -1,0 +1,11 @@
+Before coding, let's think about the algorithm:
+
+For each file (or stdin if no files):
+
+Read character by character
+
+Count characters (every byte)
+
+Count lines (when we see \n)
+
+Count words (when we transition from whitespace to non-whitespace)
